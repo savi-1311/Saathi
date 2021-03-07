@@ -41,4 +41,5 @@ app.use(session({
 
 app.use('/', require('./routes/routes.js'));
 
-app.listen(8080, console.log(`Server started on port 8080`));
+
+app.listen((process.env.PORT || 8080), console.log(`Server started on port 8080`));

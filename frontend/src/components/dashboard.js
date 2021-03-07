@@ -132,9 +132,13 @@ export default function Dashboard(props) {
 	const [show1, setShow1] = React.useState("none");
 	const [show2, setShow2] = React.useState("none");
 	const [name, setName] = React.useState("NA");
+	const [name1, setName1] = React.useState("NA");
 	const [image, setImage] = React.useState("NA");
 	const [price, setPrice] = React.useState(1);
+	const [rate, setRate] = React.useState(1);
 	const [description, setDescription] = React.useState("");
+	const [description1, setDescription1] = React.useState("");
+	const [qualification, setQualification] = React.useState("NA");
 
 
 
@@ -176,6 +180,18 @@ export default function Dashboard(props) {
 	const handleChange4 = (event) => {
 		setPrice(event.target.value);
 	}
+	const handleChange5 = (event) => {
+		setName1(event.target.value);
+	}
+	const handleChange6 = (event) => {
+		setDescription1(event.target.value);
+	}
+	const handleChange7 = (event) => {
+		setQualification(event.target.value);
+	}
+	const handleChange8 = (event) => {
+		setRate(event.target.value);
+	}
 
 
 	async function AddProductRequest(){
@@ -201,6 +217,42 @@ export default function Dashboard(props) {
 				toast.success("Successfully Added the item");
 				console.log(response.data);
 				setShow1("none");
+
+			}
+		}
+		catch(err)
+		{
+			toast.error("Error Occured!");
+		}
+	}
+
+
+	async function AddServiceRequest(){
+
+		const body = new URLSearchParams()
+		body.append('name', name1)
+		body.append('description', description1)
+		body.append('qualification', qualification)
+		body.append('rate', rate)
+
+		const config = 
+		{
+			withCredentials: true,
+			headers: 
+      {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+		}
+		try
+		{
+			const response =
+			await axios.post(`${process.env.REACT_APP_BACKEND_URL}/add-service`,body,config
+				)
+			if(response.status==200)
+			{
+				toast.success("Successfully Added the service");
+				console.log(response.data);
+				setShow2("none");
 
 			}
 		}
@@ -260,7 +312,7 @@ export default function Dashboard(props) {
 
 	<div className="modal-content">
 	<span className={classes.close} onClick={closeModal1}>&times;</span>
-	<h1>Add the product</h1>
+	<h1>Add the Product</h1>
 	<form>
 	<label> Name: </label> <br/> <input type="text" className={classes.input} onChange={handleChange1} value={name}></input><br/>
 	<br/>
@@ -280,7 +332,18 @@ export default function Dashboard(props) {
 	<div id="myModal" className={classes.modal} style={{display: show2}}>
 	<div className="modal-content">
 	<span className={classes.close} onClick={closeModal2}>&times;</span>
-	<h1>Modal Opens!</h1>
+	<h1>Add the Service</h1>
+	<form>
+	<label> Name: </label> <br/> <input type="text" className={classes.input} onChange={handleChange5} value={name1}></input><br/>
+	<br/>
+	<label> Description: </label> <br/> <input type="text" className={classes.input} onChange={handleChange6} value={description1}></input><br/>
+	<br/>
+	<label> Qualification: </label> <br/> <input type="text" className={classes.input} onChange={handleChange7} value={qualification}></input><br/>
+	<br/>
+	<label> Price: </label> <br/> <input type="number" className={classes.input} onChange={handleChange8} value={rate}></input><br/>
+	<br/>
+	<Button variant="contained" color="secondary" onClick={AddServiceRequest}> Add </Button>
+	</form>
 	</div>
 	</div>
 	</div>

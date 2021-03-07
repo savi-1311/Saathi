@@ -6,17 +6,24 @@ import LoginForm from './components/loginform';
 import SignupForm from './components/signupform';
 import Home from './components/home';
 import Products from './components/products';
+import Services from './components/services';
 import Dashboard from './components/dashboard';
+import Newses from './components/newses';
+import Helplines from './components/helplines';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Scrollbars } from 'react-custom-scrollbars';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function App() {
+  AOS.init();
 
   return (
     <>
@@ -31,6 +38,7 @@ export default function App() {
     draggable
     pauseOnHover
     />
+
     <Router>
     <Switch>
     <Route exact path="/login" component={LoginForm}/>
@@ -38,56 +46,11 @@ export default function App() {
     <Route exact path="/" component={Home}/>
     <Route exact path="/dashboard" component={Dashboard}/>
     <Route exact path="/products" component={Products}/>
+    <Route exact path="/services" component={Services}/>
+    <Route exact path="/newses" component={Newses}/>
+    <Route exact path="/helplines" component={Helplines}/>
     </Switch>
     </Router>
     </>
     );
   }
-
-
-
-  // const [login, setLogin] = React.useState(false);
-  // const [user, setUser] = React.useState({});
-
-  // React.useEffect(() => {
-  //   LoginRequest();
-  //     //getUserInfo();
-  //   }, [])
-
-  // async function getUserInfo(){
-  //   const response =
-  //   await axios.get(`${process.env.REACT_APP_BACKEND_URL}/dashboard`,{withCredentials: true}
-  //     )
-  //   console.log(response);
-  //   if(response.status==200)
-  //   {
-  //     setUser(response.data);
-  //   }
-
-  // }
-
-
-  // async function LoginRequest(){
-  //   const body = new URLSearchParams()
-  //   body.append('email', 'bandanacharu@gmail.com')
-  //   body.append('password', '123456')
-
-  //   const config = 
-  //   {
-  //     withCredentials: true,
-  //     headers: 
-  //     {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     }
-  //   }
-
-  //   const response =
-  //   await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,body,config
-  //     )
-  //   if(response.status==200)
-  //   {
-  //     setLogin(true);
-  //     getUserInfo();
-  //   }
-
-  // }

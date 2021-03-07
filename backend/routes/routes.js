@@ -1,6 +1,7 @@
 const express = require('express');
 const userModel = require('../models/usermodel.js');
 const productModel = require('../models/productmodel.js');
+const serviceModel = require('../models/servicemodel.js');
 const app = express();
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -93,7 +94,7 @@ app.post("/product", async (req, res) => {
 
 app.post("/service", async (req, res) => {
 	console.log(req.body);
-	var products = await productModel.findOne({"_id":req.body.id});
+	var products = await serviceModel.findOne({"_id":req.body.id});
 	try
 	{
 		var email = String(products.email);
@@ -349,7 +350,7 @@ app.post("/add-service", async (req,res)=>{
 			description: req.body.description,
 			email: req.session.user.email,
 			userid: req.session.user._id,
-			qualifucation: req.body.qualification,
+			qualification: req.body.qualification,
 			rate: req.body.rate
 		}
 		console.log(obj);

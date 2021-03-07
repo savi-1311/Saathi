@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from "react-router-dom";
-import Product from './product';
+import Helpline from './helpline';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +14,7 @@ import {
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 import img from "./images/bg1.jpg"
-import img1 from "./images/pot.png"
+import img1 from "./images/crime.jpg"
 
 const font = "'Yusei Magic', sans-serif";
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection : "row",
   },
   root: {
-    width: "50%",
+    width: "70%",
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -63,41 +63,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Products() {
+export default function Helplines() {
   const classes = useStyles();
   const location = useLocation();
-  const [products, setProducts] = React.useState([]);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/products`)
-    .then(res => res.json())
-    .then(
-      (result) => {
-        console.log(result);
-        setProducts(result);
-        setIsLoaded(true);
-      },
-      (error) => {
-        console.log(error);
-        toast.error("Error Occured!");
-      }
-      )
-  }, [isLoaded])
-
+  const [products, setProducts] = React.useState([
+    {
+      "name":"Women In Distress",
+      "number":"1091"
+    },
+    {
+      "name":"Women Helpline Domestic Abuse ",
+      "number":"181"
+    },
+    {
+      "name":"National Commison For Women (NCW)",
+      "number":"011-26942369"
+    },
+    {
+      "name":"Delhi Commision For Women",
+      "number":"011-23378044"
+    },
+    {
+      "name":"Student / Child Helpline",
+      "number":"1098"
+    },
+    {
+      "name":"Delhi Women Protection Cell ",
+      "number":"011-24673366"
+    },
+    {
+      "name":"Lawyers Collective Womens Rights ( Domestic Voilence Cases ) ",
+      "number":"011-24373993"
+    },
+    {
+      "name":"Pratidhi ( Legal help )",
+      "number":"011-22527259"
+    }
+    ]);
 
   return (
     <div className={classes.outer}>
     <div className={classes.left}>
     <img src={img1} style={{"height":"80%"}}/>
     <div>
-    <div className={classes.title}>Handmade Products!</div>
-    <div className={classes.subtitle}>Check out the amazing and 100% authentic handmade products.</div>
+    <div className={classes.title}>Helpline Numbers!</div>
+    <div className={classes.subtitle}>In case of any help, we have compiled a list of helpline numbers you can contact.</div>
     </div>
     </div>
     <div className={classes.root}>
     {products.map(item => (
-      <Product item={item}/>
+      <Helpline item={item}/>
       ))}
     </div>
     </div>

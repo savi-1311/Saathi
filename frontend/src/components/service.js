@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'pink',
+    height: '40vh',
     width: '80%',
     padding: '2%',
     margin: "1%",
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     top: "10%", 
     width: "80%", /* Full width */
     height: "80%", /* Full height */
-    overflow: "auto", /* Enable scroll if needed */
+    overflow: "auto", /* Enable scroll if needed */ 
     backgroundColor: "black",
     color: "white",
     textAlign: 'center',
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Product(props) {
+export default function Service(props) {
   const classes = useStyles();
   const location = useLocation();
   const [show1, setShow1] = React.useState("none");
@@ -138,7 +139,7 @@ export default function Product(props) {
     try
     {
       const response =
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/product`,body1,config
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/service`,body1,config
         )
       if(response.status==200)
       {
@@ -158,9 +159,9 @@ export default function Product(props) {
   return (
     <>
       <Paper elevation={4} className={classes.paper}>Name: {props.item.name} <br/> 
-      <img src={props.item.img} style={{width: "50%", height : "50%"}}/> 
       <br/>Description: {props.item.description} <br/> 
-      <br/> Price : Rs. {props.item.price} <br/> 
+      <br/>Qualification: {props.item.qualification} <br/> 
+      <br/> Rate : Rs. {props.item.rate} <br/> 
       <Button variant="contained" color="secondary" onClick={showModal1}> Order </Button></Paper>
 
     <div id="myModal" className={classes.modal} style={{display: show1}}>

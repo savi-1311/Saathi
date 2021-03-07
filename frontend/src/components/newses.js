@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from "react-router-dom";
-import Product from './product';
+import News from './news';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,7 +14,7 @@ import {
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 import img from "./images/bg1.jpg"
-import img1 from "./images/pot.png"
+import img1 from "./images/news.png"
 
 const font = "'Yusei Magic', sans-serif";
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection : "row",
   },
   root: {
-    width: "50%",
+    width: "70%",
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -63,19 +63,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Products() {
+export default function Newses() {
   const classes = useStyles();
   const location = useLocation();
   const [products, setProducts] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
-
+  console.log(process.env.REACT_APP_API_KEY);
   React.useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/products`)
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=cd232fb305d2425a9cfa259325f2f4ff`)
     .then(res => res.json())
     .then(
       (result) => {
         console.log(result);
-        setProducts(result);
+        setProducts(result.articles);
         setIsLoaded(true);
       },
       (error) => {
@@ -91,13 +91,13 @@ export default function Products() {
     <div className={classes.left}>
     <img src={img1} style={{"height":"80%"}}/>
     <div>
-    <div className={classes.title}>Handmade Products!</div>
-    <div className={classes.subtitle}>Check out the amazing and 100% authentic handmade products.</div>
+    <div className={classes.title}>Health News!</div>
+    <div className={classes.subtitle}>Never miss an update to keep yourself up with the latest healthcare services.</div>
     </div>
     </div>
     <div className={classes.root}>
     {products.map(item => (
-      <Product item={item}/>
+      <News item={item}/>
       ))}
     </div>
     </div>
