@@ -1,3 +1,10 @@
+# Saathi- Empowering Women!
+
+
+https://user-images.githubusercontent.com/56017960/118387927-e029de80-b63e-11eb-8341-d76ed36f3369.mp4
+
+
+
 ## Inspiration
 
 What an irony it is, that the poor get poorer and the rich get richer. India is a land of rich heritage and diverse culture. And the rural villages uphold the virtues of India. But, it's a sad truth that they never receive their share. The reason? **Middlemen**. They force the rural ladies to sell the products at a cheaper rate which they further sell at a higher price thereby keeping their profit high. "Saathi" is a website designed in such a way that the customer can directly contact the women via email. Thus, eradicating the need for greedy middlemen. With "Saathi", women can showcase their talents and get the right price for it!
